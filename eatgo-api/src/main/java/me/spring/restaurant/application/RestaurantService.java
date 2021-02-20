@@ -31,11 +31,15 @@ public class RestaurantService {
     }
 
     public Restaurant getRestaurant(Long id) {
-        Restaurant restaurant = restaurantRepository.findById(id);
+        Restaurant restaurant = restaurantRepository.findById(id).orElse(new Restaurant());
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(restaurant.getId());
         restaurant.setMenuItems(menuItems);
 
         return restaurant;
+    }
+
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 }
