@@ -1,5 +1,6 @@
 package me.spring.restaurant.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Restaurant {
     private String address;
 
     @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuItem> menuItems;
 
     public String getInformation() {
