@@ -4,8 +4,8 @@ import me.spring.restaurant.domain.MenuItem;
 import me.spring.restaurant.domain.MenuItemRepository;
 import me.spring.restaurant.domain.Restaurant;
 import me.spring.restaurant.domain.RestaurantRepository;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -28,7 +28,7 @@ public class RestaurantServiceTest {
     @Mock
     private MenuItemRepository menuItemRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
