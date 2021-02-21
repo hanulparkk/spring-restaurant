@@ -3,7 +3,9 @@ package me.spring.restaurant.application;
 import me.spring.restaurant.domain.MenuItem;
 import me.spring.restaurant.domain.MenuItemRepository;
 import me.spring.restaurant.domain.Restaurant;
+import me.spring.restaurant.domain.RestaurantNotFoundException;
 import me.spring.restaurant.domain.RestaurantRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -72,7 +74,7 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void getRestaurant() {
+    public void getRestaurantWithExisted() {
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         assertThat(restaurant.getId(), is(1004L));
@@ -80,6 +82,13 @@ public class RestaurantServiceTest {
         MenuItem menuItem = restaurant.getMenuItems().get(0);
 
         assertThat(menuItem.getName(), is("Kimchi"));
+    }
+
+    @Test
+    public void getRestaurantWithNotExisted() {
+        Assertions.assertThrows(RestaurantNotFoundException.class, () -> {
+            restaurantService.getRestaurant(0L);
+        });
     }
 
     @Test

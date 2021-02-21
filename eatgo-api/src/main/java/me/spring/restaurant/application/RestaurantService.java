@@ -3,6 +3,7 @@ package me.spring.restaurant.application;
 import me.spring.restaurant.domain.MenuItem;
 import me.spring.restaurant.domain.MenuItemRepository;
 import me.spring.restaurant.domain.Restaurant;
+import me.spring.restaurant.domain.RestaurantNotFoundException;
 import me.spring.restaurant.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,8 @@ public class RestaurantService {
     }
 
     public Restaurant getRestaurant(Long id) {
-        Restaurant restaurant = restaurantRepository.findById(id).orElse(new Restaurant());
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(restaurant.getId());
         restaurant.setMenuItems(menuItems);
