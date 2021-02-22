@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class MenuItemService {
 
-    @Autowired
     private MenuItemRepository menuItemRepository;
 
+    @Autowired
     public MenuItemService(MenuItemRepository menuItemRepository) {
         this.menuItemRepository = menuItemRepository;
     }
@@ -28,7 +28,7 @@ public class MenuItemService {
             menuItemRepository.deleteById(menuItem.getId());
             return;
         }
-        
+
         menuItem.setRestaurantId(restaurantId);
         menuItemRepository.save(menuItem);
     }

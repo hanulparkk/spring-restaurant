@@ -4,6 +4,7 @@ import me.spring.restaurant.application.RestaurantService;
 import me.spring.restaurant.domain.MenuItem;
 import me.spring.restaurant.domain.Restaurant;
 import me.spring.restaurant.domain.RestaurantNotFoundException;
+import me.spring.restaurant.domain.Review;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -63,15 +64,14 @@ public class RestaurantControllerTest {
                 .name("Kimchi")
                 .build();
         restaurant.setMenuItems(Arrays.asList(menuItem));
-
-        Restaurant restaurant2 = Restaurant.builder()
-                .id(2020L)
-                .name("Cyber food")
-                .address("Seoul")
+        Review review = Review.builder()
+                .name("labong")
+                .score(3)
+                .description("this is delicious")
                 .build();
+        restaurant.setReviews(Arrays.asList(review));
 
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
-        given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
 
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
@@ -83,15 +83,9 @@ public class RestaurantControllerTest {
                 ))
                 .andExpect(content().string(
                         containsString("Kimchi")
-                ));
-
-        mvc.perform(get("/restaurants/2020"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(
-                        containsString("\"id\":2020")
                 ))
                 .andExpect(content().string(
-                        containsString("\"name\":\"Cyber food\"")
+                        containsString("this is delicious")
                 ));
     }
 
