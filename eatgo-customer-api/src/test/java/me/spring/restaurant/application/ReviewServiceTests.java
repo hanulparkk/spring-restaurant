@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-class ReviewServiceTest {
+class ReviewServiceTests {
 
     private ReviewService reviewService;
 

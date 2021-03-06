@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(MenuItemController.class)
-public class MenuItemControllerTest {
+public class MenuItemControllerTests {
 
     @Autowired
     private MockMvc mvc;
