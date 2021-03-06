@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/Workspaces/study/data/eatgo
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:test
