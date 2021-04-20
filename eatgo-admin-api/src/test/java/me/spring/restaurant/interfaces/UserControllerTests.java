@@ -50,7 +50,11 @@ class UserControllerTests {
         String email = "admin@exmaple.com";
         String name = "Administrator";
 
-        User user = User.builder().email(email).name(name).build();
+        User user = User.builder()
+                .email(email)
+                .name(name)
+                .level(1L)
+                .build();
 
         given(userService.addUser(email, name)).willReturn(user);
 
